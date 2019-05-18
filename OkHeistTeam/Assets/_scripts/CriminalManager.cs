@@ -5,7 +5,7 @@ using Google2u;
 public class CriminalManager : MonoBehaviour
 {
     public GameObject databaseOfProfiles,dossierPrefab;
-    public Transform dossierFocusSpot, desktopSpot;
+    public Transform dossierFocusSpot, desktopSpot,resetSpot;
     public Dossier focusedDossier;
     public List<culprit>  criminalMasterList;
     

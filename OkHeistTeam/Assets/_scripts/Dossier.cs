@@ -41,6 +41,7 @@ public class Dossier : MonoBehaviour
             displayText.text = "";
             openPage.transform.localPosition = Vector3.MoveTowards(openPage.transform.localPosition, openSpot.transform.localPosition, 1 * Time.deltaTime); }
         else { displayText.text = openPage.myData; }
+        if (transform.position.y < 1) { transform.position = criminalManager.resetSpot.position; }
 
     }
     public void ChangePage(Page newOpenPage)
