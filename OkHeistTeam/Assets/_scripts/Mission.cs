@@ -27,6 +27,7 @@ public class Mission : MonoBehaviour
     int prestige;
     int currentMoney;
     int currentPrestige;
+
     void Start()
     {
       

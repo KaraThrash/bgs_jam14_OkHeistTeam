@@ -20,7 +20,7 @@ public class MissionManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-        { CreateCriminals(); }
+        { CreateCriminal(); }
     }
 
     public void CreateMission()
@@ -30,8 +30,11 @@ public class MissionManager : MonoBehaviour
 
         
     }
+    public void CreateChallenge()
+    {
 
-    public void CreateCriminals()
+    }
+    public void CreateCriminal()
     {
         culprit newCriminal;
         newCriminal.likes = new List<string>();
