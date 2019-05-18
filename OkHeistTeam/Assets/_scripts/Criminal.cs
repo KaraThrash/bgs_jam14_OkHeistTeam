@@ -4,6 +4,9 @@ using UnityEngine;
 public struct culprit {
     public string name;
     public string description;
+    public string skilltext;
+    public string liketext;
+    public string disliketext;
     public Dictionary<string,int> skillList;
     public List<string> likes;
     public List<string> dislikes;
