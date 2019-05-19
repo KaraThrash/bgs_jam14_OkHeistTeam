@@ -33,10 +33,10 @@ public class CriminalManager : MonoBehaviour
             criminalMasterList.Add(newCriminal);
           
             GameObject clone = Instantiate(dossierPrefab, spawnPos, resetSpot.rotation) as GameObject;
-
-            pictureList.transform.GetChild(0).position = clone.GetComponent<Dossier>().frontPicture.transform.position;
-            pictureList.transform.GetChild(0).rotation = clone.GetComponent<Dossier>().frontPicture.transform.rotation;
-            pictureList.transform.GetChild(0).parent = clone.transform;
+            int rnd = Random.Range(0, pictureList.transform.childCount);
+            pictureList.transform.GetChild(rnd).position = clone.GetComponent<Dossier>().frontPicture.transform.position;
+            pictureList.transform.GetChild(rnd).rotation = clone.GetComponent<Dossier>().frontPicture.transform.rotation;
+            pictureList.transform.GetChild(rnd).parent = clone.transform;
            
             dossierList.Add(clone);
             clone.GetComponent<Dossier>().SetCriminal(newCriminal);
@@ -89,9 +89,9 @@ public class CriminalManager : MonoBehaviour
         newCriminal.skillList = new Dictionary<string, int>();
         
       //  newCriminal.skillList.Add(debugSkills[rnd], Random.Range(-10, 11));
-        newCriminal.skillList.Add(criminalData._Skill_ID_1, Random.Range(-10, 11));
-        //newCriminal.skillList.Add(criminalData._Skill_ID_2, Random.Range(-10, 11));
-       // newCriminal.skillList.Add(criminalData._Skill_ID_3, Random.Range(-10, 11));
+        newCriminal.skillList.Add(criminalData._Skill_ID_1, Random.Range(1, 11));
+        newCriminal.skillList.Add(criminalData._Skill_ID_2, Random.Range(1, 11));
+        newCriminal.skillList.Add(criminalData._Skill_ID_3, Random.Range(1, 11));
 
         newCriminal.likes.Add(criminalData._Like_ID_1);
         newCriminal.likes.Add(criminalData._Idle_ID_2);

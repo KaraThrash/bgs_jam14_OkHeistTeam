@@ -30,10 +30,10 @@ public class Mission : MonoBehaviour
     int prestige;
     int currentMoney;
     int currentPrestige;
-
+    public int currentChallengeInList;
     void Start()
     {
-        
+        currentChallengeInList = 0;
        // MakeChallenges();
     }
 
@@ -45,6 +45,7 @@ public class Mission : MonoBehaviour
     public void MakeChallenges()
     {
         challenges = new List<Challenge>();
+        currentChallengeInList = 0;
         CreateChallenge();
         
 
@@ -99,7 +100,7 @@ public class Mission : MonoBehaviour
                 challenges.Add(tempChallenge);
             }
             else { Debug.Log("Missed roll"); }
-            if (challenges.Count > 4) { return; }
+            if (challenges.Count > 3) { return; }
         }
 
 
@@ -120,9 +121,10 @@ public class Mission : MonoBehaviour
         //pop last challenge from the list and check skills against the assigned criminal
         uiElement.gameObject.active = true;
         Debug.Log(challenges.Count);
-        Challenge currentChallenge = challenges[challenges.Count - 1];
-        challenges.RemoveAt(challenges.Count - 1);
-
+        Challenge currentChallenge = challenges[currentChallengeInList];
+        //challenges.RemoveAt(challenges.Count - 1);
+        currentChallengeInList++;
+        if (currentChallengeInList >= challenges.Count) { currentChallengeInList = 0; }
 
 
         //if no criminalk assigned return immediatly
@@ -177,7 +179,7 @@ public class Mission : MonoBehaviour
                     uiElement.description.text = currentChallenge.name;
                     uiElement.name.text = "Passed";
                     uiElement.reward.text = currentChallenge.money.ToString();
-
+                uiElement.background.color = Color.green;
                     Debug.Log("PASS");
                     string tempstring2 = currentChallenge.successStory.Replace("%PersonName%", tempCulprit.name);
                     tempstring2 = tempstring2.Replace("%SkillName%", el);
@@ -196,7 +198,7 @@ public class Mission : MonoBehaviour
 
 
         uiElement.challengeResult.text = tempstring;
-
+        uiElement.background.color = Color.red;
         Debug.Log("Fail");
         return currentChallenge.failmission; //if the challenge is not a lose state continue mission without rewards
     }
