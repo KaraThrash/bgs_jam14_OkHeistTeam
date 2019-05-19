@@ -1,20 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Google2u;
 public class CriminalManager : MonoBehaviour
 {
-    public GameObject databaseOfProfiles,dossierPrefab;
-    public Transform dossierFocusSpot, desktopSpot,resetSpot;
+    public GameObject databaseOfProfiles,dossierPrefab,cam;
+    public Transform dossierFocusSpot, desktopSpot,resetSpot,computerLookSpot,dossierLookSpot,selectedPile;
     public Dossier focusedDossier;
     public List<culprit>  criminalMasterList;
-    
+    public List<culprit> onTeam;
+    public List<Material> folderColors;
     // Start is called before the first frame update
     void Start()
     {
+        onTeam = new List<culprit>();
         criminalMasterList = new List<culprit>();
+        Vector3 spawnPos = resetSpot.position;
         foreach (ProfilesRow el in databaseOfProfiles.GetComponent<Profiles>().Rows)
-        { criminalMasterList.Add(CreateCriminal(el)); }
+        {
+            culprit newCriminal = CreateCriminal(el);
+            criminalMasterList.Add(newCriminal);
+            GameObject clone = Instantiate(dossierPrefab, spawnPos, resetSpot.rotation) as GameObject;
+            clone.GetComponent<Dossier>().SetCriminal(newCriminal);
+            clone.GetComponent<Renderer>().material = folderColors[Random.Range(0, folderColors.Count)];
+            spawnPos = new Vector3(spawnPos.x + 0.1f, spawnPos.y + 0.1f, spawnPos.z);
+        }
 
 
 
@@ -68,9 +79,29 @@ public class CriminalManager : MonoBehaviour
         Debug.Log(newCriminal.skilltext);
         return newCriminal;
     }
+    public void MoveCamera()
+    {
+        if (cam.transform.position == dossierLookSpot.transform.position)
+        { cam.transform.position = computerLookSpot.position; cam.transform.rotation = computerLookSpot.rotation; }
+        else { cam.transform.position = dossierLookSpot.position; cam.transform.rotation = dossierLookSpot.rotation; }
+    }
+
+    public void ChooseCriminal()
+    {
+        if (focusedDossier != null)
+        {
+
+            onTeam.Add(focusedDossier.myCriminal);
 
 
-
+            focusedDossier.transform.position = selectedPile.position;
+            focusedDossier.transform.rotation = selectedPile.rotation;
+            focusedDossier.Picked();
+            focusedDossier.enabled = false;
+           
+        }
+        focusedDossier = null;
+    }
 
     public void ChangeFocusedDossier(Dossier newFocus)
     {
