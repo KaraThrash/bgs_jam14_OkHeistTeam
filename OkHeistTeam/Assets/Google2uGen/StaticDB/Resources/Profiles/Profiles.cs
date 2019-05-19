@@ -203,30 +203,30 @@ namespace Google2u
 		private Profiles()
 		{
 			Rows.Add( new ProfilesRow("PROFILE_1", "Dominic", "Puppies, muscle cars, puzzles", "Mushrooms, small talk, children", "Driving, shooting", "I show up, I do my work, I get paid, I go home. You don’t bother me, I won’t both" +
-    "er you.", "Driving", "Shooting", "Empty", "Dogs", "Cars", "Puzzles", "Drugs", "Social", "Kids"));
-			Rows.Add( new ProfilesRow("PROFILE_2", "Tommy", "Driving, reading, napping", "Dogs, guns, being bored", "Driving, safe cracking", @"Hello! I’m Tommy. I’ve been a dedicated safe cracker for 23 years. I think a team works better together when everyone knows something about each other! I love chatting with my coworkers and getting to know what makes them tick. I’m available any day of the week except Sundays, as I will be spending the day at church with my family.", "Driving", "SafeCracking", "Empty", "Cars", "Reading", "Sleep", "Dogs", "Shooting", "Boredom"));
-			Rows.Add( new ProfilesRow("PROFILE_3", "Art", "Pottery, surfing, skiing", "Drinking, guns, babysitting", "Karate, networking", @"I enjoy meeting new people, and I’m great at finding common ground with just about anyone. However, I know how to buckle down; I never waste time on chit-chat when there’s work to be done. I refuse to carry a gun, but if things go south, I’m handy to have around because my fists are considered lethal weapons.", "MartialArts", "Social", "Empty", "Crafts", "Sufing", "Skiing", "Drugs", "Shooting", "Kids"));
+    "er you.", "Driving", "Shooting", "Hacking", "Dogs", "Cars", "Puzzles", "Drugs", "Social", "Kids"));
+			Rows.Add( new ProfilesRow("PROFILE_2", "Tommy", "Driving, reading, napping", "Dogs, guns, being bored", "Driving, safe cracking", @"Hello! I’m Tommy. I’ve been a dedicated safe cracker for 23 years. I think a team works better together when everyone knows something about each other! I love chatting with my coworkers and getting to know what makes them tick. I’m available any day of the week except Sundays, as I will be spending the day at church with my family.", "Driving", "SafeCracking", "Connections", "Social", "Reading", "Sleep", "Dogs", "Shooting", "Boredom"));
+			Rows.Add( new ProfilesRow("PROFILE_3", "Art", "Pottery, surfing, skiing", "Drinking, guns, babysitting", "Karate, networking", @"I enjoy meeting new people, and I’m great at finding common ground with just about anyone. However, I know how to buckle down; I never waste time on chit-chat when there’s work to be done. I refuse to carry a gun, but if things go south, I’m handy to have around because my fists are considered lethal weapons.", "MartialArts", "Social", "Athletics", "Crafts", "Sufing", "Skiing", "Drugs", "Shooting", "Kids"));
 			Rows.Add( new ProfilesRow("PROFILE_4", "Christine", "Archery, puzzles, children", "Small talk, cooking, cars", "Sniping, code cracking", "I’ve never encountered a code I can’t crack or a target I can’t hit. I care deepl" +
     "y about the environment, which is why I bike, walk, or take public transit only;" +
-    " I will not get in a car.", "Shooting", "Hacking", "Empty", "Shooting", "Puzzles", "Kids", "Social", "Food", "Cars"));
+    " I will not get in a car.", "Shooting", "Hacking", "SafeCracking", "Public Transport", "Nature", "Puzzles", "Social", "Food", "Cars"));
 			Rows.Add( new ProfilesRow("PROFILE_5", "Delilah", "God, parties, investing", "Puzzles, hiking, pineapple", "Networking, shooting", @"Hi there! I’m so excited to be part of your team! I consider myself to be an extrovert – there’s nothing I like better than being surrounded by a bunch of new people! I’ll talk to anyone about anything, but my favorite topic is guns. I’m an expert sharpshooter and I love to discuss the pros and cons of various types of guns.", "Social", "Shooting", "Empty", "Religion", "Parties", "Money", "Puzzles", "Hiking", "Food"));
 			Rows.Add( new ProfilesRow("PROFILE_6", "Holly", "Painting, reading, gymnastics", "Religion, cooking, puzzles", "Karate, safe cracking", "I won’t fight unless I have to. But if I do have to, you’d better believe I fight" +
-    " to win.", "MartialArts", "SafeCracking", "Empty", "Crafts", "Reading", "Gymnastics", "Religion", "Food", "Puzzles"));
-			Rows.Add( new ProfilesRow("PROFILE_7", "Sam", "Hunting, movies, skiing", "Public transport, dogs, cooking", "Driving, sniping", "I have social anxiety, so I’m not great at talking to new people. When I’m out on" +
+    " to win.", "MartialArts", "SafeCracking", "Demolition", "Crafts", "Reading", "Gymnastics", "Religion", "Food", "Puzzles"));
+			Rows.Add( new ProfilesRow("PROFILE_7", "Sam", "Hunting, movies, skiing", "Public transport, dogs, cooking", "Pilot, Demo", "I have social anxiety, so I’m not great at talking to new people. When I’m out on" +
     " a job, I prefer to stay on the sidelines and help from afar. But what I lack in" +
-    " social skills, I make up for in loyalty and trustworthiness.", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new ProfilesRow("PROFILE_8", "Alonzo", "Parties, animals, gymnastics", "Children, nature, kale", "Karate, code cracking", "Greetings! My name is Alonzo. I have many talents, and I’d love to discuss them w" +
+    " social skills, I make up for in loyalty and trustworthiness.", "Pilot", "Demolition", "Stealth", "Shooting", "Movies", "Skiing", "Public Transport", "Dogs", "Social"));
+			Rows.Add( new ProfilesRow("PROFILE_8", "Alonzo", "Parties, animals, gymnastics", "Children, nature, kale", "Charm, Disguise", "Greetings! My name is Alonzo. I have many talents, and I’d love to discuss them w" +
     "ith you in person. I’m not great at these profiles, but I’m very personable and " +
-    "friendly.", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new ProfilesRow("PROFILE_9", "Vanessa", "Carpentry, dancing, biking", "Drinking, small talk, cars", "Hotwiring, safe cracking", "My best assets are my time management and my ability to repair just about anythin" +
+    "friendly.", "Charm", "Disguise", "Social", "Parties", "Dogs", "Gymnastics", "Kids", "Hiking", "Food"));
+			Rows.Add( new ProfilesRow("PROFILE_9", "Vanessa", "Carpentry, dancing, biking", "Drinking, small talk, cars", "Construction, safe cracking", "My best assets are my time management and my ability to repair just about anythin" +
     "g that’s broken. Tools, furniture, windows – you name it, I can fix it. I’m a ja" +
-    "ck of all trades, master of none.", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new ProfilesRow("PROFILE_10", "Gordon", "Scotch, reading, cars", "Public transport, dogs, chick flicks", "Hotwiring, driving", @"Hello all, my name is Gordon. To be quite honest, I’m not sure exactly why I have this profile; until recently I’d had no trouble finding jobs the old-fashioned way, but I suppose we all must evolve with the times, so here I am. I enjoy meeting new people, but I am quite shy at first and tend to hold my tongue until I know someone better.", "", "", "", "", "", "", "", "", ""));
-			Rows.Add( new ProfilesRow("PROFILE_11", "Kelly", "Animals, eating healthy, gymnastics", "Movies, puzzles, golf", "Networking, sniping", "I’m small, fast, and good at talking. I’m also a crack shot thanks to my grandma," +
-    " who used to help me with my target practice.", "", "", "", "", "", "", "", "", ""));
+    "ck of all trades, master of none.", "Construction", "SafeCracking", "Sabotage", "Making", "Parties", "Biking", "Drugs", "Social", "Cars"));
+			Rows.Add( new ProfilesRow("PROFILE_10", "Gordon", "Scotch, reading, cars", "Public transport, dogs, chick flicks", "Sabotage, driving", @"Hello all, my name is Gordon. To be quite honest, I’m not sure exactly why I have this profile; until recently I’d had no trouble finding jobs the old-fashioned way, but I suppose we all must evolve with the times, so here I am. I enjoy meeting new people, but I am quite shy at first and tend to hold my tongue until I know someone better.", "Sabotage", "Medical", "Occult", "Drugs", "Reading", "Cars", "Public Transport", "Dogs", "Sports"));
+			Rows.Add( new ProfilesRow("PROFILE_11", "Kelly", "Animals, eating healthy, gymnastics", "Movies, puzzles, golf", "SlieghtOfHand, sniping", "I’m small, fast, and good at talking. I’m also a crack shot thanks to my grandma," +
+    " who used to help me with my target practice.", "SleightOfHand", "Shooting", "Athletics", "Dogs", "Food", "Gymnastics", "Movies", "Puzzles", "Sports"));
 			Rows.Add( new ProfilesRow("PROFILE_12", "Stu", "Discus, competitive eating, dogs", "Open water, comedians, chick flicks", "Computers, shooting", "I went to school for architecture, but I dropped out because I didn’t want to spe" +
     "nd my days contributing to the capitalist economy that oppresses the masses whil" +
-    "e helping the rich get richer. ¡Viva la revolución!", "", "", "", "", "", "", "", "", ""));
+    "e helping the rich get richer. ¡Viva la revolución!", "Hacking", "Shooting", "Construction", "Dogs", "Food", "Sports", "Money", "Nature", "Movies"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
