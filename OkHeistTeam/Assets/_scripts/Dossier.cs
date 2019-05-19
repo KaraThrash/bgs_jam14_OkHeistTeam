@@ -100,6 +100,7 @@ public class Dossier : MonoBehaviour
     {
         if (focused == true)
         {
+            openPage.targetPos = closedSpot.transform.localPosition;
             openPage.transform.localPosition = closedSpot.transform.localPosition;
             displayText.text = "";
             focused = false; GetComponent<Rigidbody>().isKinematic = false; GetComponent<Rigidbody>().useGravity = true;
