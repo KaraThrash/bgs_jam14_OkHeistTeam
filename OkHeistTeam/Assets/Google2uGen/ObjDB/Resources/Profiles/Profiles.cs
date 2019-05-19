@@ -182,10 +182,10 @@ namespace Google2u
 	public class Profiles :  Google2uComponentBase, IGoogle2uDB
 	{
 		public enum rowIds {
-			PROFILE_1, PROFILE_2, PROFILE_3, PROFILE_4, PROFILE_5, PROFILE_6, PROFILE_7, PROFILE_8
+			PROFILE_1, PROFILE_2, PROFILE_3, PROFILE_4, PROFILE_5, PROFILE_6, PROFILE_7, PROFILE_8, PROFILE_9, PROFILE_10, PROFILE_11, PROFILE_12
 		};
 		public string [] rowNames = {
-			"PROFILE_1", "PROFILE_2", "PROFILE_3", "PROFILE_4", "PROFILE_5", "PROFILE_6", "PROFILE_7", "PROFILE_8"
+			"PROFILE_1", "PROFILE_2", "PROFILE_3", "PROFILE_4", "PROFILE_5", "PROFILE_6", "PROFILE_7", "PROFILE_8", "PROFILE_9", "PROFILE_10", "PROFILE_11", "PROFILE_12"
 		};
 		public System.Collections.Generic.List<ProfilesRow> Rows = new System.Collections.Generic.List<ProfilesRow>();
 		public override void AddRowGeneric (System.Collections.Generic.List<string> input)
