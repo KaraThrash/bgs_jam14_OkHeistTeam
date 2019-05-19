@@ -137,10 +137,10 @@ namespace Google2u
 	public sealed class Missions : IGoogle2uDB
 	{
 		public enum rowIds {
-			Challenge_1, Challenge_2, Challenge_3, Challenge_4, Challenge_5, Challenge_6, Challenge_7, Challenge_8, Challenge_9, Challenge_10
+			Challenge_1, Challenge_2, Challenge_3, Challenge_4, Challenge_5, Challenge_6, Challenge_7, Challenge_8, Challenge_9, Challenge_10, Challenge_11, Challenge_12
 		};
 		public string [] rowNames = {
-			"Challenge_1", "Challenge_2", "Challenge_3", "Challenge_4", "Challenge_5", "Challenge_6", "Challenge_7", "Challenge_8", "Challenge_9", "Challenge_10"
+			"Challenge_1", "Challenge_2", "Challenge_3", "Challenge_4", "Challenge_5", "Challenge_6", "Challenge_7", "Challenge_8", "Challenge_9", "Challenge_10", "Challenge_11", "Challenge_12"
 		};
 		public System.Collections.Generic.List<MissionsRow> Rows = new System.Collections.Generic.List<MissionsRow>();
 
@@ -163,7 +163,7 @@ namespace Google2u
     "ightened awareness", "5", "Dogs", "Dogs"));
 			Rows.Add( new MissionsRow("Challenge_3", "Drive getaway car", "Driving", "Pilot", "Luck", "%PersonName% successfully drove the getaway car leaning on their %SkillName% abil" +
     "ities", "%PersonName% crashed the car immediately. Womp Womp", "6", "Cars", "Cars"));
-			Rows.Add( new MissionsRow("Challenge_4", "Fight the cops", "MartialArts", "Demolition", "Shooting", "%PersonName% defeated the cope with mad %SkillName% abilities", "The cops tackled %PersonName% easily. Why did they even try?", "5", "Gymnastics", "Shooting"));
+			Rows.Add( new MissionsRow("Challenge_4", "Fight the cops", "MartialArts", "Demolition", "Shooting", "%PersonName% defeated the cops with mad %SkillName% abilities", "The cops tackled %PersonName% easily. Why did they even try?", "5", "Gymnastics", "Shooting"));
 			Rows.Add( new MissionsRow("Challenge_5", "Scale the fence", "MartialArts", "Athletics", "Stealth", "%PersonName% scaled the fence easily with slick %SkillName% skills", "Why did %PersonName% even try to get over the fence? They failed miserably", "5", "Gymnastics", "Sports"));
 			Rows.Add( new MissionsRow("Challenge_6", "Break into safe", "SafeCracking", "SleightOfHand", "Hacking", "%PersonName% got right into the safe with their sweet %SkillName% abilities", "Damn it AppleJack! %PersonName% couldn\'t even come close to cracking the safe", "5", "Puzzles", "Puzzles"));
 			Rows.Add( new MissionsRow("Challenge_7", "Obtain safe room code", "Hacking", "Connections", "Charm", "%PersonName% got the code for the safe room using %SkillName%", "No safe room code for this team because %PersonName% just wasn\'t up to it", "5", "Social", "Social"));
@@ -172,6 +172,8 @@ namespace Google2u
     "d now they\'re busted", "5", "Crafts", "Social"));
 			Rows.Add( new MissionsRow("Challenge_10", "Building schematics", "Construction", "Academic", "Hacking", "%PersonName% created schematics by using their ill %SkillName% talents", "Schematics schmematics - no schematics for the team because %PersonName% is a bum" +
     "", "5", "Reading", "Reading"));
+			Rows.Add( new MissionsRow("Challenge_11", "Avoid laser tripwires", "Athletics", "Stealth", "Sabotage", "%PersonName% defly avoided the lase tripwires with their sweet %SkillName%", "%PersonName% just stumbled right into the laser tripwires like a dang amateur", "5", "Gymnastics", "Shooting"));
+			Rows.Add( new MissionsRow("Challenge_12", "Blow hole in wall", "Demolition", "MartialArts", "Shooting", "%PersonName% used their insane %SkillName% to blow a massive hole in a wall", "", "5", "Sports", "Public Transport"));
 		}
 		public IGoogle2uRow GetGenRow(string in_RowString)
 		{
