@@ -14,8 +14,9 @@ public class MissionManager : MonoBehaviour
     public List<Text> teamButtonText;
     public int selectedChallenge,activeCrawl;
     public GameObject crawlObject,challengeAssignObject,challengehighlight,memberhighlight,resultScreen;
-
-
+    public Text resiltText;
+    public int winlossses;
+    public GameObject selectionMusic, missionMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,8 @@ public class MissionManager : MonoBehaviour
     }
     public void StartAssignPhase()
     {
+        selectionMusic.active = false;
+        missionMusic.active = true;
         if (criminalManager.onTeam.Count > 3)
         {
             challengeAssignObject.active = true;
@@ -39,8 +42,8 @@ public class MissionManager : MonoBehaviour
                 teamButtonText[count].text = criminalManager.criminalMasterList[criminalManager.onTeam[count]].name;
                 count++;
             }
-            count = 0;
-            while (count < challengeUI.Count && count < currentMission.challenges.Count)
+            count = 0;//currentMission.challenges.Count
+            while (count < challengeUI.Count && count < 4)
             {
 
                 challengeUI[count].gameObject.active = true;
@@ -51,13 +54,17 @@ public class MissionManager : MonoBehaviour
     }
     public void StartSelectionPhase()
     {
+        winlossses = 0;
         resultScreen.active = false;
         crawlObject.active = false;
         challengeAssignObject.active = false;
+        foreach (ChallengeUi el in challengeCrawl) { el.gameObject.active = false; }
         activeCrawl = -1;
         selectedChallenge = -1;
         CreateMission();
         criminalManager.RestartPhase();
+        selectionMusic.active = true;
+        missionMusic.active = false;
     }
     public void NextMission()
     {
@@ -71,8 +78,8 @@ public class MissionManager : MonoBehaviour
         activeCrawl = -1;
         crawlObject.active = true;
         challengeAssignObject.active = false;
+
      
-        
 
     }
     public void NextChallenge()
@@ -82,15 +89,19 @@ public class MissionManager : MonoBehaviour
         if (activeCrawl >= challengeCrawl.Count || activeCrawl >= currentMission.challenges.Count) { ShowResults(); }
         else
         {
-            currentMission.ChallengeCheck(challengeCrawl[activeCrawl]);
+            if (currentMission.ChallengeCheck(challengeCrawl[activeCrawl]) == false) { winlossses++; } else { winlossses--; }
+            
         }
 
     }
     public void ShowResults()
     {
+
         crawlObject.active = false;
         challengeAssignObject.active = false;
         resultScreen.active = true;
+        if (winlossses > 0) { resiltText.text = "Successful, but can they keep it up?"; } else { resiltText.text = "A complete failure, probably don't bring them next time"; }
+        
 
     }
     public void challengeClicked(int numberinlist)

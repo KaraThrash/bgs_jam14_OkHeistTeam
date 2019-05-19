@@ -18,10 +18,10 @@ public class Dossier : MonoBehaviour
 
     public void SetCriminal(culprit newCriminal)
     {
-        pages[0].myData = newCriminal.skilltext;
-        pages[1].myData = newCriminal.liketext;
-        pages[2].myData = newCriminal.disliketext;
-        
+        pages[0].myData = newCriminal.description;
+        pages[1].myData = newCriminal.skilltext;
+        pages[2].myData = newCriminal.liketext;
+        pages[3].myData = newCriminal.disliketext;
         myCriminal = newCriminal;
 
     }
@@ -69,13 +69,16 @@ public class Dossier : MonoBehaviour
         switch (openedPage.pageNumber)
         {
             case 0:
-                displayText.text = "Skills: \n" + openPage.myData;
+                displayText.text = "Description: \n" + "\n" +  openPage.myData;
                 break;
             case 1:
-                displayText.text = "Likes: \n" + openPage.myData;
+                displayText.text = "Skills: \n" + "\n" + openPage.myData;
                 break;
             case 2:
-                displayText.text = "Dislikes: \n" + openPage.myData;
+                displayText.text = "Likes: \n" + "\n" + openPage.myData;
+                break;
+            case 3:
+                displayText.text = "Dislikes: \n" + "\n" + openPage.myData;
                 break;
             default:
                 newtext = "whoops";
@@ -87,15 +90,18 @@ public class Dossier : MonoBehaviour
 
     public void Clicked()
     {
-        if (focused == true)
+        if (criminalManager.onTeam.Count > 3) { GetComponent<Rigidbody>().AddForce(Vector3.up * 150.0f * Time.deltaTime,ForceMode.Impulse); }
+        else
         {
-            criminalManager.ChangeFocusedDossier(GetComponent<Dossier>());
-           // focused = false; GetComponent<Rigidbody>().useGravity = true;
-           // GetComponent<Rigidbody>().isKinematic = false;
-           // GetComponent<Rigidbody>().AddForce(criminalManager.desktopSpot.position - transform.position * 5.0F * Time.deltaTime, ForceMode.Impulse);
+            if (focused == true)
+            {
+                criminalManager.ChangeFocusedDossier(GetComponent<Dossier>());
+                // focused = false; GetComponent<Rigidbody>().useGravity = true;
+                // GetComponent<Rigidbody>().isKinematic = false;
+                // GetComponent<Rigidbody>().AddForce(criminalManager.desktopSpot.position - transform.position * 5.0F * Time.deltaTime, ForceMode.Impulse);
+            }
+            else { criminalManager.ChangeFocusedDossier(GetComponent<Dossier>()); }
         }
-        else { criminalManager.ChangeFocusedDossier(GetComponent<Dossier>()); }
-        
     }
     public void ChangeFocus()
     {

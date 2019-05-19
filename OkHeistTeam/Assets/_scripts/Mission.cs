@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Google2u;
 public struct Challenge
 {
     public string name;
@@ -45,33 +46,66 @@ public class Mission : MonoBehaviour
     {
         challenges = new List<Challenge>();
         CreateChallenge();
-        CreateChallenge();
-        CreateChallenge();
-        CreateChallenge();
+        
 
     }
 
     public void CreateChallenge()
     {
-        Challenge tempChallenge;//= new Challenge();
+        foreach (MissionsRow el in Missions.Instance.Rows)
+        {
+            //culprit newCriminal = CreateCriminal(el);
+            //newCriminal.placeInMasterList = criminalMasterList.Count - 1;
+            //criminalMasterList.Add(newCriminal);
 
-        tempChallenge.name = "challengeName";
-        tempChallenge.description = "challengeDescription";
+            //GameObject clone = Instantiate(dossierPrefab, spawnPos, resetSpot.rotation) as GameObject;
 
-        tempChallenge.successStory = "successstory"; 
-        tempChallenge.failStory = "fail";
-        tempChallenge.difficulty = 1;
-        tempChallenge.skills = new List<string>();
-        tempChallenge.likes = new List<string>();
-        tempChallenge.money = 1;
-        tempChallenge.prestige = 1;
-        tempChallenge.failmission = true; //does the mission end(T) or continue(F)?
-        tempChallenge.criminalAssigned = false;
-        tempChallenge.assignedCriminal = -1; //refers to masater list
+            //pictureList.transform.GetChild(0).position = clone.GetComponent<Dossier>().frontPicture.transform.position;
+            //pictureList.transform.GetChild(0).rotation = clone.GetComponent<Dossier>().frontPicture.transform.rotation;
+            //pictureList.transform.GetChild(0).parent = clone.transform;
 
-        challenges.Add(tempChallenge);
+            //dossierList.Add(clone);
+            //clone.GetComponent<Dossier>().SetCriminal(newCriminal);
+            //clone.GetComponent<Renderer>().material = folderColors[Random.Range(0, folderColors.Count)];
+            //spawnPos = new Vector3(spawnPos.x + 0.1f, spawnPos.y + 0.1f, spawnPos.z);
 
-    }
+
+            if (Random.Range(0, 4) < 3)
+            {
+
+                Challenge tempChallenge;//= new Challenge();
+
+                Debug.Log("New Challenge " + el._PassingSkill1 + " " + el._PassingSkill2 + " " + el._PassingSkill3 + " " + el._Challenges);
+                tempChallenge.name = " " + el._PassingSkill1 + " " + el._PassingSkill2 + " " + el._PassingSkill3 + " ";
+                tempChallenge.description = el._Challenges;
+
+                tempChallenge.successStory = el._PassText;
+                tempChallenge.failStory = el._fAILtEXT;
+                tempChallenge.difficulty = 1;
+                tempChallenge.skills = new List<string>();
+                tempChallenge.skills.Add(el._PassingSkill1);
+                tempChallenge.skills.Add(el._PassingSkill2);
+                tempChallenge.skills.Add(el._PassingSkill3);
+
+                tempChallenge.likes = new List<string>();
+                tempChallenge.likes.Add(el._LikeBonus);
+
+                tempChallenge.money = 1;
+                tempChallenge.prestige = 1;
+                tempChallenge.failmission = true; //does the mission end(T) or continue(F)?
+                tempChallenge.criminalAssigned = false;
+                tempChallenge.assignedCriminal = -1; //refers to masater list
+
+                challenges.Add(tempChallenge);
+            }
+            else { Debug.Log("Missed roll"); }
+            if (challenges.Count > 3) { return; }
+        }
+
+
+
+
+}
     public void ChallengeLoop()
     {
         if (challenges.Count > 0)
@@ -99,53 +133,70 @@ public class Mission : MonoBehaviour
         //    uiElement.reward.text = "NOTHING!";
         //    return currentChallenge.failmission; }
 
-        culprit tempCulprit = missionManager.criminalManager.criminalMasterList[currentChallenge.assignedCriminal];
-        int likeModifier = 0;
+        if (currentChallenge.assignedCriminal == -1)
+        {
+            uiElement.challengeResult.text = "No one was sent to " + currentChallenge.description;
+            return false;
+        }
+      
+            culprit tempCulprit = missionManager.criminalManager.criminalMasterList[currentChallenge.assignedCriminal];
+            int likeModifier = 0;
 
-       
-           
-                foreach (string elLike in currentChallenge.likes)
+
+
+            foreach (string elLike in currentChallenge.likes)
+            {
+                //check criminal likes for bonus
+                if (tempCulprit.likes.Contains(elLike) == true)
                 {
-                    //check criminal likes for bonus
-                    if (tempCulprit.likes.Contains(elLike) == true)
-                    {
                     likeModifier += 2;
-                    }
-                    //check criminal dislikes for negative
-                    if (tempCulprit.dislikes.Contains(elLike) == true)
-                    {
-                    likeModifier -= 2;
-                    }
-
                 }
-
-                foreach (string el in currentChallenge.skills)
+                //check criminal dislikes for negative
+                if (tempCulprit.dislikes.Contains(elLike) == true)
                 {
-                    int criminalskillcheckvalue = 0;
-                    //check if has skill
-                    if (tempCulprit.skillList.ContainsKey(el) == true)
-                    {
-                        criminalskillcheckvalue += tempCulprit.skillList[el]; 
-                    }
-                    criminalskillcheckvalue += likeModifier;
-                    //check against difficulty
-                    if (criminalskillcheckvalue >= currentChallenge.difficulty)
-                    {
-                        UpdateMoney(money,prestige);
-
-                uiElement.assigned.text = tempCulprit.name;
-                uiElement.description.text = currentChallenge.name;
-                uiElement.name.text = "Passed";
-                uiElement.reward.text = currentChallenge.money.ToString();
-
-                Debug.Log("PASS");
-                        return false;
-                    }
+                    likeModifier -= 2;
                 }
+
+            }
+
+            foreach (string el in currentChallenge.skills)
+            {
+                int criminalskillcheckvalue = 0;
+                //check if has skill
+                if (tempCulprit.skillList.ContainsKey(el) == true)
+                {
+                    criminalskillcheckvalue += tempCulprit.skillList[el];
+                }
+                criminalskillcheckvalue += likeModifier;
+                //check against difficulty
+                if (criminalskillcheckvalue >= currentChallenge.difficulty)
+                {
+                    UpdateMoney(money, prestige);
+
+                    uiElement.assigned.text = tempCulprit.name;
+                    uiElement.description.text = currentChallenge.name;
+                    uiElement.name.text = "Passed";
+                    uiElement.reward.text = currentChallenge.money.ToString();
+
+                    Debug.Log("PASS");
+                    string tempstring2 = currentChallenge.successStory.Replace("%PersonName%", tempCulprit.name);
+                    tempstring2 = tempstring2.Replace("%SkillName%", tempCulprit.name);
+                    uiElement.challengeResult.text = tempstring2;
+                    return false;
+                }
+            }
+        
         uiElement.assigned.text = tempCulprit.name;
         uiElement.description.text = currentChallenge.name;
         uiElement.name.text = "Fail";
         uiElement.reward.text = "NOTHING!";
+
+        string tempstring = currentChallenge.failStory.Replace("%PersonName%", tempCulprit.name);
+
+
+
+        uiElement.challengeResult.text = tempstring;
+
         Debug.Log("Fail");
         return currentChallenge.failmission; //if the challenge is not a lose state continue mission without rewards
     }

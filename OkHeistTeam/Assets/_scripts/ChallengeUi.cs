@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ChallengeUi : MonoBehaviour
 {
     public MissionManager missionManager;
-    public Text name, description, reward, assigned;
+    public Text name, description, reward, assigned, challengeResult;
     public GameObject highlight;
 
     // Start is called before the first frame update

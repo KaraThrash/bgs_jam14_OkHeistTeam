@@ -29,7 +29,7 @@ public class CriminalManager : MonoBehaviour
         foreach (ProfilesRow el in Profiles.Instance.Rows)
         {
             culprit newCriminal = CreateCriminal(el);
-            newCriminal.placeInMasterList = criminalMasterList.Count - 1;
+            newCriminal.placeInMasterList = criminalMasterList.Count ;
             criminalMasterList.Add(newCriminal);
           
             GameObject clone = Instantiate(dossierPrefab, spawnPos, resetSpot.rotation) as GameObject;
@@ -71,9 +71,13 @@ public class CriminalManager : MonoBehaviour
         redLight.active = false;
         float offset = 0.0f;
         int count = 0;
-        while (count < dossierList.Count)
-        { dossierList[count].GetComponent<Rigidbody>().isKinematic = true; dossierList[count].GetComponent<Rigidbody>().isKinematic = false; dossierList[count].transform.position = new Vector3(resetSpot.position.x + offset, resetSpot.position.y + offset, resetSpot.position.z);
-            offset += 0.05f; count++; }
+        while (count < dossierList.Count )
+        {
+            dossierList[count].GetComponent<Rigidbody>().isKinematic = true; dossierList[count].GetComponent<Rigidbody>().isKinematic = false;
+            dossierList[count].transform.position = new Vector3(resetSpot.position.x + offset, resetSpot.position.y + offset, resetSpot.position.z);
+            offset += 0.05f;  dossierList[count].GetComponent<Dossier>().enabled = true; dossierList[count].GetComponent<Dossier>().clickTargetObj.active = true;
+            count++;
+        }
     }
 
     public culprit CreateCriminal(ProfilesRow criminalData)
@@ -103,7 +107,7 @@ public class CriminalManager : MonoBehaviour
         newCriminal.liketext = criminalData._Like_Text;
         newCriminal.disliketext = criminalData._Dislike_Text;
         newCriminal.skilltext = criminalData._Skills_Text;
-        Debug.Log(newCriminal.skilltext);
+       // Debug.Log(newCriminal.skilltext);
         return newCriminal;
     }
     public void MoveCamera()
@@ -115,16 +119,20 @@ public class CriminalManager : MonoBehaviour
 
     public void ChooseCriminal()
     {
-        if (focusedDossier != null)
+        if (focusedDossier != null && onTeam.Count < 4)
         {
-
+           
             onTeam.Add(focusedDossier.myCriminal.placeInMasterList);
             focusedDossier.transform.position = selectedPile.position;
             focusedDossier.transform.rotation = selectedPile.rotation;
             focusedDossier.Picked();
             focusedDossier.enabled = false;
             if (onTeam.Count > 3)
-            { redLight.active = true; }
+            {
+
+                redLight.active = true;
+
+            }
             else { redLight.active = false; }
         }
         focusedDossier = null;
