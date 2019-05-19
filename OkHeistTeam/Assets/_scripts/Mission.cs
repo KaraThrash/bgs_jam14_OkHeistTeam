@@ -180,7 +180,7 @@ public class Mission : MonoBehaviour
 
                     Debug.Log("PASS");
                     string tempstring2 = currentChallenge.successStory.Replace("%PersonName%", tempCulprit.name);
-                    tempstring2 = tempstring2.Replace("%SkillName%", tempCulprit.name);
+                    tempstring2 = tempstring2.Replace("%SkillName%", el);
                     uiElement.challengeResult.text = tempstring2;
                     return false;
                 }

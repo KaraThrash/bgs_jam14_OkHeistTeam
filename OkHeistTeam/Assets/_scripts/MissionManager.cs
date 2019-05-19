@@ -13,8 +13,9 @@ public class MissionManager : MonoBehaviour
     public List<ChallengeUi> challengeUI,challengeCrawl;
     public List<Text> teamButtonText;
     public int selectedChallenge,activeCrawl;
-    public GameObject crawlObject,challengeAssignObject,challengehighlight,memberhighlight,resultScreen;
-    public Text resiltText;
+    public GameObject crawlObject,challengeAssignObject,challengehighlight,memberhighlight,resultScreen,creditsObject,selectionPhaseObject;
+    public Text resiltText, computerSkillList;
+       
     public int winlossses;
     public GameObject selectionMusic, missionMusic;
     // Start is called before the first frame update
@@ -29,8 +30,17 @@ public class MissionManager : MonoBehaviour
        // if (Input.GetKeyDown(KeyCode.Space))
       //  { CreateCriminal(); }
     }
+    public void ToggleCredits()
+    {
+        if (creditsObject.active == true) { creditsObject.active = false; } else { creditsObject.active = true; }
+    }
     public void StartAssignPhase()
     {
+        challengehighlight.transform.position = new Vector3(-1000,-1000,0);
+        memberhighlight.transform.position = new Vector3(-1000 , -1000, 0);
+        foreach (ChallengeUi el in challengeUI)
+        { el.assigned.text = ""; }
+        selectionPhaseObject.active = false;
         selectionMusic.active = false;
         missionMusic.active = true;
         if (criminalManager.onTeam.Count > 3)
@@ -55,6 +65,7 @@ public class MissionManager : MonoBehaviour
     public void StartSelectionPhase()
     {
         winlossses = 0;
+        selectionPhaseObject.active = true;
         resultScreen.active = false;
         crawlObject.active = false;
         challengeAssignObject.active = false;
@@ -157,6 +168,13 @@ public class MissionManager : MonoBehaviour
                 el.description.text = currentMission.challenges[count].description; count++;
             }
         }
+        string tempstring = "";
+        foreach (Challenge el2 in currentMission.challenges)
+        {
+            tempstring += el2.description + "\n";
+           
+        }
+        computerSkillList.text = tempstring;
         //CreateChallenge();
         //CreateChallenge();
         //CreateChallenge();

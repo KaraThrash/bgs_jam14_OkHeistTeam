@@ -65,20 +65,21 @@ public class Dossier : MonoBehaviour
     public void SetDisplayText(Page openedPage)
     {
         
-        string newtext = "";
+        string newtext = ""; displayText.fontSize = 20;
         switch (openedPage.pageNumber)
         {
             case 0:
-                displayText.text = "Description: \n" + "\n" +  openPage.myData;
+                displayText.fontSize = 15;
+                displayText.text = myCriminal.name + "\n" + "\n" + "Description: \n" + "\n" +  openPage.myData;
                 break;
             case 1:
-                displayText.text = "Skills: \n" + "\n" + openPage.myData;
+                displayText.text = myCriminal.name + "\n" + "\n" + "Skills: \n" + "\n" + openPage.myData;
                 break;
             case 2:
-                displayText.text = "Likes: \n" + "\n" + openPage.myData;
+                displayText.text = myCriminal.name + "\n" + "\n" + "Likes: \n" + "\n" + openPage.myData;
                 break;
             case 3:
-                displayText.text = "Dislikes: \n" + "\n" + openPage.myData;
+                displayText.text = myCriminal.name + "\n" + "\n" + "Dislikes: \n" + "\n" + openPage.myData;
                 break;
             default:
                 newtext = "whoops";
@@ -95,12 +96,13 @@ public class Dossier : MonoBehaviour
         {
             if (focused == true)
             {
+                if (openPage != null) { openPage.transform.localPosition = closedSpot.transform.localPosition; }
                 criminalManager.ChangeFocusedDossier(GetComponent<Dossier>());
                 // focused = false; GetComponent<Rigidbody>().useGravity = true;
                 // GetComponent<Rigidbody>().isKinematic = false;
                 // GetComponent<Rigidbody>().AddForce(criminalManager.desktopSpot.position - transform.position * 5.0F * Time.deltaTime, ForceMode.Impulse);
             }
-            else { criminalManager.ChangeFocusedDossier(GetComponent<Dossier>()); }
+            else { criminalManager.ChangeFocusedDossier(GetComponent<Dossier>()); if (openPage != null) { openPage.transform.localPosition = closedSpot.transform.localPosition; } }
         }
     }
     public void ChangeFocus()
