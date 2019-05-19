@@ -100,7 +100,7 @@ public class MissionManager : MonoBehaviour
         if (activeCrawl >= challengeCrawl.Count || activeCrawl >= currentMission.challenges.Count) { ShowResults(); }
         else
         {
-            if (currentMission.ChallengeCheck(challengeCrawl[activeCrawl]) == false) { winlossses++; } else { winlossses--; }
+            if (currentMission.ChallengeCheck(challengeCrawl[activeCrawl]) == true) { winlossses++; } else { winlossses--; }
             
         }
 

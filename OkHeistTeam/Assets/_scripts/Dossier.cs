@@ -119,6 +119,8 @@ public class Dossier : MonoBehaviour
 
     public void Picked()
     {
+        openPage.targetPos = closedSpot.transform.localPosition;
+        openPage.transform.localPosition = closedSpot.transform.localPosition;
         if (focused == true)
         {
             openPage.transform.localPosition = closedSpot.transform.localPosition;

@@ -99,7 +99,7 @@ public class Mission : MonoBehaviour
                 challenges.Add(tempChallenge);
             }
             else { Debug.Log("Missed roll"); }
-            if (challenges.Count > 3) { return; }
+            if (challenges.Count > 4) { return; }
         }
 
 
