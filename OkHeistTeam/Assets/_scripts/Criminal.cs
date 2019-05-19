@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 public struct culprit {
+    public int placeInMasterList;
     public string name;
     public string description;
     public string skilltext;

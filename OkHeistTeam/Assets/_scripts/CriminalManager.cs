@@ -5,23 +5,40 @@ using UnityEngine.UI;
 using Google2u;
 public class CriminalManager : MonoBehaviour
 {
-    public GameObject databaseOfProfiles,dossierPrefab,cam;
-    public Transform dossierFocusSpot, desktopSpot,resetSpot,computerLookSpot,dossierLookSpot,selectedPile;
+    public GameObject databaseOfProfiles,dossierPrefab,cam, pictureList;
+    public Transform dossierFocusSpot, desktopSpot,resetSpot,computerLookSpot,dossierLookSpot,selectedPile, rejectedPile;
     public Dossier focusedDossier;
     public List<culprit>  criminalMasterList;
-    public List<culprit> onTeam;
+    public List<GameObject> dossierList;
+    public List<int> onTeam;//refer to master list
     public List<Material> folderColors;
+    public GameObject redLight;
+    //for assign phase
+    public int currentSelectedTeamMember;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        onTeam = new List<culprit>();
+        currentSelectedTeamMember = -1;
+        onTeam = new List<int>();
+        dossierList = new List<GameObject>();
         criminalMasterList = new List<culprit>();
         Vector3 spawnPos = resetSpot.position;
-        foreach (ProfilesRow el in databaseOfProfiles.GetComponent<Profiles>().Rows)
+        //calls singleton
+        foreach (ProfilesRow el in Profiles.Instance.Rows)
         {
             culprit newCriminal = CreateCriminal(el);
+            newCriminal.placeInMasterList = criminalMasterList.Count - 1;
             criminalMasterList.Add(newCriminal);
+          
             GameObject clone = Instantiate(dossierPrefab, spawnPos, resetSpot.rotation) as GameObject;
+
+            pictureList.transform.GetChild(0).position = clone.GetComponent<Dossier>().frontPicture.transform.position;
+            pictureList.transform.GetChild(0).rotation = clone.GetComponent<Dossier>().frontPicture.transform.rotation;
+            pictureList.transform.GetChild(0).parent = clone.transform;
+           
+            dossierList.Add(clone);
             clone.GetComponent<Dossier>().SetCriminal(newCriminal);
             clone.GetComponent<Renderer>().material = folderColors[Random.Range(0, folderColors.Count)];
             spawnPos = new Vector3(spawnPos.x + 0.1f, spawnPos.y + 0.1f, spawnPos.z);
@@ -48,11 +65,21 @@ public class CriminalManager : MonoBehaviour
         }
         
     }
-
+    public void RestartPhase()
+    {
+        onTeam = new List<int>();
+        redLight.active = false;
+        float offset = 0.0f;
+        int count = 0;
+        while (count < dossierList.Count)
+        { dossierList[count].GetComponent<Rigidbody>().isKinematic = true; dossierList[count].GetComponent<Rigidbody>().isKinematic = false; dossierList[count].transform.position = new Vector3(resetSpot.position.x + offset, resetSpot.position.y + offset, resetSpot.position.z);
+            offset += 0.05f; count++; }
+    }
 
     public culprit CreateCriminal(ProfilesRow criminalData)
     {
         culprit newCriminal;
+        newCriminal.placeInMasterList = 0;
         newCriminal.likes = new List<string>();
         newCriminal.dislikes = new List<string>();
         newCriminal.skillList = new Dictionary<string, int>();
@@ -91,17 +118,34 @@ public class CriminalManager : MonoBehaviour
         if (focusedDossier != null)
         {
 
-            onTeam.Add(focusedDossier.myCriminal);
-
-
+            onTeam.Add(focusedDossier.myCriminal.placeInMasterList);
             focusedDossier.transform.position = selectedPile.position;
             focusedDossier.transform.rotation = selectedPile.rotation;
             focusedDossier.Picked();
             focusedDossier.enabled = false;
-           
+            if (onTeam.Count > 3)
+            { redLight.active = true; }
+            else { redLight.active = false; }
         }
         focusedDossier = null;
     }
+    public void RejectCriminal()
+    {
+        if (focusedDossier != null)
+        {
+
+            
+
+
+            focusedDossier.transform.position = rejectedPile.position;
+            focusedDossier.transform.rotation = rejectedPile.rotation;
+            focusedDossier.Picked();
+            focusedDossier.enabled = false;
+
+        }
+        focusedDossier = null;
+    }
+
 
     public void ChangeFocusedDossier(Dossier newFocus)
     {

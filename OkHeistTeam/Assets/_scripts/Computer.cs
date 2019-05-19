@@ -5,7 +5,8 @@ using UnityEngine;
 public class Computer : MonoBehaviour
 {
     public CriminalManager criminalManager;
-    public int type; //0 computer 1 pickedpile 2 phone
+    public MissionManager missionManager;
+    public int type; //0 computer 1 pickedpile 2 trash 3 phone
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,9 @@ public class Computer : MonoBehaviour
         if (type == 1)
         { criminalManager.ChooseCriminal(); }
         if (type == 2)
-        { criminalManager.ChooseCriminal(); }
+        { criminalManager.RejectCriminal(); }
+        if (type == 3)
+        { missionManager.StartAssignPhase(); }
     }
 
 }

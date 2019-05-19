@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Dossier : MonoBehaviour
 {
     public CriminalManager criminalManager;
+    public int placeInMasterList;
     public GameObject frontPicture, skillsPage, likesPage, dislikesPage,openSpot,closedSpot,clickTargetObj;
     public Page openPage;
     public List<Page> pages;
